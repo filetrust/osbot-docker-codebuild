@@ -1,14 +1,14 @@
 version: 0.1
-environmentVariables:
-  plaintext:
-    AWS_DEFAULT_REGION: "west-2"
+#environmentVariables:
+#  plaintext:
+#    AWS_DEFAULT_REGION: "west-2"
 
 phases:
   pre_build:
     commands:
       - echo $AWS_DEFAULT_REGION
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+ #     - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
       #- echo "Build started on `date`"
       - echo "Building the Docker image..."
