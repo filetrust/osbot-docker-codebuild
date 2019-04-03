@@ -74,16 +74,18 @@ class Create_Code_Build:
                     "Create-Docker-Image": {
                                             "Version"  : "2012-10-17",
                                             "Statement": [{   "Effect"  : "Allow"                            ,
-                                                              "Action"  : ["ecr:CreateRepository"           ],
-                                                              "Resource": "*"                               },
-                                                          {   "Effect"  : "Allow"                            ,
                                                               "Action"  : [ "ecr:BatchCheckLayerAvailability",
                                                                             "ecr:CompleteLayerUpload"        ,
                                                                             "ecr:GetAuthorizationToken"      ,
                                                                             "ecr:InitiateLayerUpload"        ,
                                                                             "ecr:PutImage"                   ,
                                                                             "ecr:UploadLayerPart"]           ,
-                                                                "Resource": "*"     }]}}
+                                                                "Resource": "*"     }]},
+                    "Create-Repository": {
+                                            "Version"  : "2012-10-17",
+                                            "Statement": [{   "Effect"  : "Allow"                            ,
+                                                              "Action"  : ["ecr:CreateRepository"           ],
+                                                              "Resource": "*"                               }]}}
 
         policies_arns  = list(self.code_build.iam.role_policies().values())
         policies_names = list(self.code_build.iam.role_policies().keys())
