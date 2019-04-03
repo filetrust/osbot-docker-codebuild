@@ -1,5 +1,10 @@
 version: 0.1
 phases:
+ pre_build:
+    commands:
+      - echo $AWS_DEFAULT_REGION
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   install:
     commands:
       - pip3 install pbx_gs_python_utils
