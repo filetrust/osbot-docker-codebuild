@@ -54,7 +54,17 @@ class Create_Code_Build:
                                                               "Effect" : "Allow",
                                                               "Action" : [ "secretsmanager:GetSecretValue","secretsmanager:DescribeSecret"],
                                                               "Resource": ["arn:aws:secretsmanager:eu-west-2:244560807427:secret:slack-gs-bot-*",
-                                                                           "arn:aws:secretsmanager:eu-west-2:244560807427:secret:elastic_gsuite_data-*"]}]}}
+                                                                           "arn:aws:secretsmanager:eu-west-2:244560807427:secret:elastic_gsuite_data-*"]}]},
+                    "Create-Docker-Image": {
+                                            "Version"  : "2012-10-17",
+                                            "Statement": [{     "Effect": "Allow"                            ,
+                                                                "Action": [ "ecr:BatchCheckLayerAvailability",
+                                                                            "ecr:CompleteLayerUpload"        ,
+                                                                            "ecr:GetAuthorizationToken"      ,
+                                                                            "ecr:InitiateLayerUpload"        ,
+                                                                            "ecr:PutImage"                   ,
+                                                                            "ecr:UploadLayerPart"]           ,
+                                                                "Resource": "*"     }]}}
 
         policies_arns  = list(self.code_build.iam.role_policies().values())
         policies_names = list(self.code_build.iam.role_policies().keys())
