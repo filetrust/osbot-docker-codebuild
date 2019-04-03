@@ -12,16 +12,18 @@ phases:
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
 
   build:
-   commands:
+    commands:
       #- echo "- docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG ."
       - echo "Build started on `date`"
       - docker build -t gs-ecr-code-build:latest docker/.
+      - docker tag gs-ecr-code-build:latest gs-ecr-code-build:latest
 
- #     - echo "Building the Docker image..."
- #     #- docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
 
-#  install:
-#    commands:
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push gs-ecr-code-build:latest
 #      - pip3 install pbx_gs_python_utils
 #      - pip3 install python-coveralls pytest-cov==2.5.0
 #      - pip3 install boto3 pytest
