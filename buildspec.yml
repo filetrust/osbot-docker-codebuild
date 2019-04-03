@@ -17,10 +17,9 @@ phases:
       - echo "Build started on `date`"
       - docker build -t gs-docker-codebuild:latest docker/.
       - docker tag gs-docker-codebuild:latest 244560807427.dkr.ecr.eu-west-2.amazonaws.com/gs-docker-codebuild:latest
-      - docker push 244560807427.dkr.ecr.eu-west-2.amazonaws.com/gs-docker-codebuild:latest
 
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push gs-ecr-code-build:latest
+      - docker push 244560807427.dkr.ecr.eu-west-2.amazonaws.com/gs-docker-codebuild:latest
