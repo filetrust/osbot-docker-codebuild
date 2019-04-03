@@ -16,7 +16,7 @@ class test_Create_Code_Build(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        Create_Code_Build(project_name).setup(delete_on_setup=True)
+        Create_Code_Build(project_name).setup(delete_on_setup=False)
 
     @classmethod
     def tearDownClass(cls):
