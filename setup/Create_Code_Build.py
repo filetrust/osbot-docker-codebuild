@@ -1,3 +1,5 @@
+from time import sleep
+
 from pbx_gs_python_utils.utils.aws.CodeBuild import CodeBuild
 from pbx_gs_python_utils.utils.aws.IAM import IAM
 
@@ -26,8 +28,7 @@ class Create_Code_Build:
             self.iam.role_create(self.assume_policy)                     # create role
             assert self.iam.role_info().get('Arn') == self.service_role  # confirm the role exists
             sleep(1)
-            self.code_build.project_create(self.project_repo,
-                                           self.service_role)            #  in a non-deterministic way, this sometimes throws the error: CodeBuild is not authorized to perform: sts:AssumeRole
+            self.create_project()                                        # use this version
 
     def teardown(self, delete_on_teardown=False):
 
@@ -38,6 +39,21 @@ class Create_Code_Build:
             self.iam.role_delete()
             assert self.code_build.project_exists() is False
             assert self.iam.role_exists() is False
+
+    def create_project(self):
+        kvargs = {
+            'name'        : self.project_name,
+            'source'      : { 'type'         : 'GITHUB',
+                           'location'        : self.project_repo                 },
+            'artifacts'   : {'type'          : 'NO_ARTIFACTS'                    },
+            'environment' : {'type'          : 'LINUX_CONTAINER'                  ,
+                            'image'          : 'aws/codebuild/docker:18.09.0'     ,
+                            'computeType'    : 'BUILD_GENERAL1_LARGE'            },
+                            #'privilegedMode' : True                              },
+            'serviceRole' : self.service_role
+        }
+
+        return self.code_build.codebuild.create_project(**kvargs)
 
     def create_policies(self):
         cloud_watch_arn = "arn:aws:logs:eu-west-2:244560807427:log-group:/aws/codebuild/{0}:log-stream:*".format(self.project_name)
