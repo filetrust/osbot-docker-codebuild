@@ -38,12 +38,6 @@ class test_Create_Code_Build(TestCase):
         build_id = self.api.code_build.build_start()
         result = self.api.code_build.build_wait_for_completion(build_id, max_attempts=100, log_status=True)
         Dev.pprint(result)
-    # use cases
 
-    def test_create_policies_and_trigger_build(self):
-        self.api.create_policies()
-        build_id = self.api.code_build.build_start()
-        result = self.api.code_build.build_wait_for_completion(build_id,max_attempts=100,log_status=True)
-        Dev.pprint(result)
-        #Dev.pprint(result.get('phases')[2].get('contexts')[0].get('message') )
+
 

@@ -1,18 +1,27 @@
 version: 0.1
+environmentVariables:
+  plaintext:
+    $AWS_DEFAULT_REGION: "west-2"
+
 phases:
- pre_build:
+  pre_build:
     commands:
       - echo $AWS_DEFAULT_REGION
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-  install:
-    commands:
-      - pip3 install pbx_gs_python_utils
-      - pip3 install python-coveralls pytest-cov==2.5.0
-      - pip3 install boto3 pytest
-      #- pip3 install elasticsearch
-      - git checkout master
-      - export COVERALLS_SERVICE_NAME=aws_code_build
+  build:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      #- docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+
+#  install:
+#    commands:
+#      - pip3 install pbx_gs_python_utils
+#      - pip3 install python-coveralls pytest-cov==2.5.0
+#      - pip3 install boto3 pytest
+#      #- pip3 install elasticsearch
+#      - git checkout master
+#      - export COVERALLS_SERVICE_NAME=aws_code_build
 
 
   post_build:

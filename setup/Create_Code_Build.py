@@ -1,5 +1,3 @@
-from time import sleep
-
 from pbx_gs_python_utils.utils.aws.CodeBuild import CodeBuild
 from pbx_gs_python_utils.utils.aws.IAM import IAM
 
