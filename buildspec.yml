@@ -9,10 +9,10 @@ phases:
       - echo $AWS_DEFAULT_REGION
       - echo Logging in to Amazon ECR...
  #     - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-  build:
-      #- echo "Build started on `date`"
-      - echo "Building the Docker image..."
-      #- docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+ # build:
+ #     #- echo "Build started on `date`"
+ #     - echo "Building the Docker image..."
+ #     #- docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
 
 #  install:
 #    commands:
@@ -24,9 +24,9 @@ phases:
 #      - export COVERALLS_SERVICE_NAME=aws_code_build
 
 
-  post_build:
-    commands:
-      - echo "*** In post_build phase ***"
+#  post_build:
+#    commands:
+     # - echo "*** In post_build phase ***"
       #- cd tests && pytest -v --cov
       #- cp tests/.coverage .
       #- coveralls
