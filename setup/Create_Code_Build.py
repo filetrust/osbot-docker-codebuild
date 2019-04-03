@@ -73,8 +73,11 @@ class Create_Code_Build:
                                                                            "arn:aws:secretsmanager:eu-west-2:244560807427:secret:elastic_gsuite_data-*"]}]},
                     "Create-Docker-Image": {
                                             "Version"  : "2012-10-17",
-                                            "Statement": [{     "Effect": "Allow"                            ,
-                                                                "Action": [ "ecr:BatchCheckLayerAvailability",
+                                            "Statement": [{   "Effect"  : "Allow"                            ,
+                                                              "Action"  : ["ecr:CreateRepository"           ],
+                                                              "Resource": "*"                               },
+                                                          {   "Effect"  : "Allow"                            ,
+                                                              "Action"  : [ "ecr:BatchCheckLayerAvailability",
                                                                             "ecr:CompleteLayerUpload"        ,
                                                                             "ecr:GetAuthorizationToken"      ,
                                                                             "ecr:InitiateLayerUpload"        ,
