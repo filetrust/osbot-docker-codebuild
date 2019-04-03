@@ -1,2 +1,2 @@
-FROM    aws/codebuild/python:3.7.1
+FROM    python:3.7.0
 RUN     echo "in docker build"
