@@ -4,8 +4,6 @@ from unittest import TestCase
 
 from pbx_gs_python_utils.utils.Assert        import Assert
 from pbx_gs_python_utils.utils.Dev import Dev
-from pbx_gs_python_utils.utils.aws.CodeBuild import CodeBuild
-from pbx_gs_python_utils.utils.aws.IAM       import IAM
 
 from setup.Create_Code_Build import Create_Code_Build
 
