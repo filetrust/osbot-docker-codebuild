@@ -2,35 +2,50 @@ import unittest
 from time import sleep
 from unittest import TestCase
 
+from osbot_aws import Globals
+from osbot_aws.apis.IAM import IAM
 from pbx_gs_python_utils.utils.Assert        import Assert
 from pbx_gs_python_utils.utils.Dev import Dev
 
-from setup.Create_Code_Build import Create_Code_Build
+from Create_Code_Build import Create_Code_Build
 
-
-project_name = 'gs-docker-codebuild'
 
 class test_Create_Code_Build(TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        Create_Code_Build(project_name).setup(delete_on_setup=False)
-
-    @classmethod
-    def tearDownClass(cls):
-        Create_Code_Build(project_name).teardown(delete_on_teardown = False)
-
     def setUp(self):
-        self.api = Create_Code_Build(project_name)
+        self.project_name    = 'gs-docker-codebuild'
+        self.profile_name    = 'gs-detect-aws'
+        self.account_id      = IAM().account_id(self.profile_name)
+        self.delete_project  = True
+        self.api             = Create_Code_Build(account_id=self.account_id, project_name=self.project_name)
 
-    def test__init__(self):
-        Assert(self.api.project_name).is_equal(project_name                               )      # confirm init vars setup
-        Assert(self.api.project_repo).is_equal('https://github.com/pbx-gs/' + project_name)
-        assert 'gsbot-gsuite' in self.api.code_build.projects()                                  # confirm project has been created
-        assert self.api.iam.role_exists() is True                                                # confirm role has been created
+    def test_create(self):
+        if self.delete_project:
+            self.api.delete_project_role_and_policies()
+            assert self.api.code_build.project_exists()  is False
+            assert self.api.code_build.iam.role_exists() is False
 
-    def test_create_policies(self):
-        self.api.create_policies()
+        expected_account_id     = '654386450934'
+        expected_project_arn = 'arn:aws:codebuild:eu-west-2:{0}:project/{1}'.format(self.account_id, self.project_name)
+        expected_build_id_start = 'arn:aws:codebuild:eu-west-2:654386450934:build/gs-docker-codebuild'.format(self.account_id, self.project_name)
+
+
+        Assert(self.account_id      ).is_equal(expected_account_id                             )            # confirm account was correctly set from profile_name
+        Assert(self.api.project_name).is_equal(self.project_name                               )            # confirm vars setup
+        Assert(self.api.project_repo).is_equal('https://github.com/pbx-gs/' + self.project_name)            # confirm repo
+
+
+        policies = self.api.policies__for_docker_build()
+        self.api.create_role_and_policies(policies)
+        sleep(1)                                                                                            # to give time for AWS to sync up internally
+
+        assert self.api.create_project_with_container__docker()['project']['arn'] == expected_project_arn
+        assert self.project_name                     in self.api.code_build.projects()                      # confirm project has been created
+        assert self.api.code_build.iam.role_exists() is True                                                # confirm role has been created
+
+        assert self.api.code_build.build_start().startswith(expected_build_id_start)                        # start build
+
+
 
     def test_build_start(self):
         build_id = self.api.code_build.build_start()
