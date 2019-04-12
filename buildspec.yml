@@ -6,18 +6,20 @@ version: 0.1
     #IMAGE_TAG: "latest"
     #ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $5}')  # this is not working so for now
     #ACCOUNT_ID: "654386450934"                                          # hard code this value here
+
+environment_variables:
+  plaintext:
+    RBA_BUILD_VERSION: "default"
 phases:
   pre_build:
     commands:
       - echo $AWS_DEFAULT_REGION
       - echo Logging in to Amazon ECR...
       #- $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - IMAGE_TAG_2=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}') ; echo $IMAGE_TAG_2
-      - echo $IMAGE_TAG_2
-      - export ACCOUNT_ID="654386450934" ; echo $ACCOUNT_ID
-      - echo $ACCOUNT_ID
-      - set ACCOUNT_ID="654386450934" ; echo $ACCOUNT_ID
-      - echo $ACCOUNT_ID
+      #- IMAGE_TAG_2=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}') ; echo $IMAGE_TAG_2
+      - echo $RBA_BUILD_VERSION
+      #- ACCOUNT_ID="654386450934" ; echo $ACCOUNT_ID # works
+      #- echo $ACCOUNT_ID                             # doesn't work
 #      - ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
 #      - echo "$ACCOUNT_ID"
 #      - export ACCOUNT_ID=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $4}')
