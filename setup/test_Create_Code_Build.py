@@ -16,6 +16,7 @@ class test_Create_Code_Build(TestCase):
         self.delete_project  = True
         self.api             = Create_Code_Build(account_id=self.account_id, project_name=self.project_name)
 
+    # mising from this build workflow is the ECR create repository command (this was done manually)
     def test_create(self):
         if self.delete_project:
             self.api.delete_project_role_and_policies()
