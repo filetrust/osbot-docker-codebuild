@@ -20,7 +20,7 @@ phases:
 #      - echo "$(awk -F: '{print $4}' <<< $CODEBUILD_BUILD_ARN)"
 #      - echo "$(awk -F: '{print $5}' <<< $CODEBUILD_BUILD_ARN)"
 #      - echo "$(awk -F: '{print $6}' <<< $CODEBUILD_BUILD_ARN)"
-#      - export $ACCOUNT_ID=$(awk -F: '{print $6}' <<< $CODEBUILD_BUILD_ARN)
+      - export $ACCOUNT_ID=$(awk -F: '{print $6}' <<< $CODEBUILD_BUILD_ARN)
 #      - echo "*********"
 #      - echo "$$ACCOUNT_ID"
 
