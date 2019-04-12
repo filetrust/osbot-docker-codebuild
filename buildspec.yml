@@ -14,7 +14,9 @@ phases:
       #- $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       - IMAGE_TAG_2=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}') ; echo $IMAGE_TAG_2
       - echo $IMAGE_TAG_2
-      - ACCOUNT_ID="654386450934" ; echo $ACCOUNT_ID
+      - export ACCOUNT_ID="654386450934" ; echo $ACCOUNT_ID
+      - echo $ACCOUNT_ID
+      - set ACCOUNT_ID="654386450934" ; echo $ACCOUNT_ID
       - echo $ACCOUNT_ID
 #      - ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
 #      - echo "$ACCOUNT_ID"
