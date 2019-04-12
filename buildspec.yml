@@ -5,6 +5,7 @@ environmentVariables:
     #IMAGE_REPO_NAME: "GS-ECR-code-build"
     #IMAGE_TAG: "latest"
     ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $2}')
+    ACCOUNT_ID: 123456
 phases:
   pre_build:
     commands:
