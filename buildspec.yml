@@ -12,7 +12,7 @@ phases:
       - echo $AWS_DEFAULT_REGION
       - echo Logging in to Amazon ECR...
       #- $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - export ACCOUNT_ID="654386450934"
+      - ACCOUNT_ID="654386450934"
       - echo $ACCOUNT_ID
 #      - ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
 #      - echo "$ACCOUNT_ID"
