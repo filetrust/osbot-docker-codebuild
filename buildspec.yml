@@ -1,6 +1,7 @@
 version: 0.1
 environmentVariables:
   plaintext:
+    ACCOUNT_ID: "654386450934"
     AWS_DEFAULT_REGION: "west-2"
     #IMAGE_REPO_NAME: "GS-ECR-code-build"
     #IMAGE_TAG: "latest"
