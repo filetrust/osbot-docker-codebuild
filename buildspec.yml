@@ -7,18 +7,18 @@ environmentVariables:
 phases:
   pre_build:
     commands:
-      - echo $AWS_DEFAULT_REGION
+      #- echo $AWS_DEFAULT_REGION
       - echo Logging in to Amazon ECR...
       #- $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $2}')
       - echo "$IMAGE_TAG"
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $3}')
+      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
       - echo "$IMAGE_TAG"
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $4}')
+      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $4}')
       - echo "$IMAGE_TAG"
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $5}')
+      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $5}')
       - echo "$IMAGE_TAG"
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $6}')
+      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $6}')
       - echo "$IMAGE_TAG"
 
 #  build:
