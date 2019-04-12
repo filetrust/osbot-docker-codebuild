@@ -10,9 +10,9 @@ phases:
       #- echo $AWS_DEFAULT_REGION
       - echo Logging in to Amazon ECR...
       #- $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - ACCOUNT_ID: build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $2}')
+      - ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $2}')
       - echo "$ACCOUNT_ID"
-      - ACCOUNT_ID: build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
+      - ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
       - echo "$ACCOUNT_ID"
       - export ACCOUNT_ID=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $4}')
       - echo "$ACCOUNT_ID"
