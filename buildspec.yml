@@ -10,23 +10,23 @@ phases:
       #- echo $AWS_DEFAULT_REGION
       - echo Logging in to Amazon ECR...
       #- $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $2}')
-      - echo "$IMAGE_TAG"
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
-      - echo "$IMAGE_TAG"
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $4}')
-      - echo "$IMAGE_TAG"
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $5}')
-      - echo "$IMAGE_TAG"
-      - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $6}')
-      - echo "$IMAGE_TAG"
+      - ACCOUNT_ID: build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $2}')
+      - echo "$ACCOUNT_ID"
+      - ACCOUNT_ID: build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
+      - echo "$ACCOUNT_ID"
+      - export ACCOUNT_ID=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $4}')
+      - echo "$ACCOUNT_ID"
+      - export ACCOUNT_ID=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $5}')
+      - echo "$ACCOUNT_ID"
+      - export ACCOUNT_ID=build-$(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $6}')
+      - echo "$ACCOUNT_ID"
 
 #  build:
 #    commands:
 #      - echo "- docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG ."
 #      - echo "Build started on `date`"
 #      - docker build -t gs-docker-codebuild:latest docker/.
-#      - docker tag gs-docker-codebuild:latest $IMAGE_TAG.dkr.ecr.eu-west-2.amazonaws.com/gs-docker-codebuild:latest
+#      - docker tag gs-docker-codebuild:latest $ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/gs-docker-codebuild:latest
 #      - echo Build completed on `date`
 #      - echo Pushing the Docker image...
-#      - docker push $IMAGE_TAG.dkr.ecr.eu-west-2.amazonaws.com/gs-docker-codebuild:latest
+#      - docker push $ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/gs-docker-codebuild:latest
