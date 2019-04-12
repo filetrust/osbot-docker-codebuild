@@ -9,8 +9,9 @@ version: 0.1
 
 environment_variables:
   plaintext:
-    RBA_BUILD_VERSION: "default"
-    ACCOUNT_ID: "654386450934"
+    AWS_DEFAULT_REGION: "eu-west-2_2"
+    ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $5}')  # this is not working so for now
+    ACCOUNT_ID_2: "654386450934aaa"
 
 phases:
   pre_build:
@@ -19,7 +20,9 @@ phases:
       - echo Logging in to Amazon ECR...
       #- $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       #- IMAGE_TAG_2=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}') ; echo $IMAGE_TAG_2
+      - echo $AWS_DEFAULT_REGION
       - echo $ACCOUNT_ID
+      - echo $ACCOUNT_ID_2
       #- ACCOUNT_ID="654386450934" ; echo $ACCOUNT_ID # works
       #- echo $ACCOUNT_ID                             # doesn't work
 #      - ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $3}')
