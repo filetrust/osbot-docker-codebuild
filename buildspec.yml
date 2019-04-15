@@ -19,7 +19,8 @@ phases:
   build:
     commands:
       - echo "Build started on `date`"
-      - docker build -t gs-docker-codebuild:latest docker/.
+      #- docker build -t gs-docker-codebuild:latest docker/alpine-python/.
+      - docker build -t gs-docker-codebuild:latest docker/alpine-gcc-python/.
       - docker tag gs-docker-codebuild:latest $ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/gs-docker-codebuild:latest
       - echo Build completed on `date`
       - echo Pushing the Docker image...
