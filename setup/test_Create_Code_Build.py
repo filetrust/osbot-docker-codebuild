@@ -13,7 +13,7 @@ class test_Create_Code_Build(TestCase):
         self.project_name    = 'gs-docker-codebuild'
         self.profile_name    = 'gs-detect-aws'
         self.account_id      = IAM().account_id(self.profile_name)
-        self.delete_project  = True
+        self.delete_project  = False
         self.api             = Create_Code_Build(account_id=self.account_id, project_name=self.project_name)
 
     # mising from this build workflow is the ECR create repository command (this was done manually)
