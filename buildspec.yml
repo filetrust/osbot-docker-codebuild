@@ -6,7 +6,8 @@ environment_variables:
     IMAGE_TAG: "latest"
     IMAGE_REPO_NAME: "gs-docker-codebuild"
     #ACCOUNT_ID: $(echo $CODEBUILD_BUILD_ARN | awk -F":" '{print $5}')  # this is not working so for now
-    ACCOUNT_ID: "654386450934"                                        # hard code this value here
+    #ACCOUNT_ID: "654386450934"                                        # hard code this value here
+    ACCOUNT_ID: "244560807427"
 
 phases:
   pre_build:
