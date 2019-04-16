@@ -1,7 +1,7 @@
 FROM    python:3.7-alpine
 RUN     echo "in docker build for? Apine + GCC + Python Dependencies"
 
-RUN     apk add --no-cache --virtual .build-deps gcc musl-dev libffi-dev
+RUN     apk add --no-cache --virtual .build-deps gcc musl-dev libffi-dev openssl-dev
 RUN     pip3 install cython
 RUN     pip3 install jira
 RUN     apk del .build-deps gcc musl-dev
