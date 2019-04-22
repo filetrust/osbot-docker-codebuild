@@ -1,7 +1,7 @@
 FROM    jupyter/base-notebook
 RUN     echo "in docker build"
 
-RUN     pip install pbx_gs_python_utils osbot_aws boto3 osbot-jupyter
+RUN     pip install pbx_gs_python_utils osbot_aws boto3
 
 USER    root
 RUN     wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
