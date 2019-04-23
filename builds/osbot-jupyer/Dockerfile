@@ -2,10 +2,10 @@ FROM    jupyter/base-notebook
 RUN     echo "in docker build"
 
 #RUN     pip install pbx_gs_python_utils osbot_aws boto3
-RUN     pip3 install jira
-RUN     pip3 install boto3 pytest pytest-json
-RUN     pip3 install elasticsearch google-api-python-client oauth2client
-RUN     pip3 install pbx_gs_python_utils osbot_aws osbot-jira osbot-gsuite
+RUN     pip install jira
+RUN     pip install boto3 pytest pytest-json
+RUN     pip install elasticsearch google-api-python-client oauth2client
+RUN     pip install pbx_gs_python_utils osbot_aws osbot-jira osbot-gsuite
 
 
 USER    root
