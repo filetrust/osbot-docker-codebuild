@@ -5,7 +5,8 @@ environment_variables:
     AWS_DEFAULT_REGION: "eu-west-2"
     IMAGE_TAG: "latest"
     IMAGE_REPO_NAME: "osbot-jupyter"
-    ACCOUNT_ID: "244560807427"
+    #ACCOUNT_ID: "244560807427"
+    ACCOUNT_ID: "654386450934"
 
 phases:
   pre_build:
