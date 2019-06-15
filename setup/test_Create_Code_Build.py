@@ -6,6 +6,7 @@ from osbot_aws.helpers.Create_Code_Build import Create_Code_Build
 from pbx_gs_python_utils.utils.Assert    import Assert
 from pbx_gs_python_utils.utils.Dev       import Dev
 
+# NOTE at the moment the builds/osbot-jupyter/buildpsec.yml is done manually (need to write an api method to execute it)
 
 class test_Create_Code_Build(TestCase):
 
@@ -44,7 +45,7 @@ class test_Create_Code_Build(TestCase):
         assert self.api.code_build.build_start().startswith(expected_build_id_start)                        # start build
 
 
-
+    # use this to start a code build
     def test_build_start(self):
         build_id = self.api.code_build.build_start()
         result = self.api.code_build.build_wait_for_completion(build_id, max_attempts=100, log_status=True)
