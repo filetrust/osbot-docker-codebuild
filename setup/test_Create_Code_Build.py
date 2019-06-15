@@ -8,7 +8,7 @@ from pbx_gs_python_utils.utils.Dev       import Dev
 
 # NOTE at the moment the builds/osbot-jupyter/buildpsec.yml is done manually (need to write an api method to execute it)
 # go to https://eu-west-2.console.aws.amazon.com/codesuite/codebuild/projects/gs-docker-codebuild/builds/start/advanced
-# put 'builds/osbot-jupyter/buildpsec.yml' on the Buildspec -> 'Buildspec name - optional' textbox
+# put 'builds/osbot-jupyter/buildspec.yml' on the Buildspec -> 'Buildspec name - optional' textbox
 
 class test_Create_Code_Build(TestCase):
 
