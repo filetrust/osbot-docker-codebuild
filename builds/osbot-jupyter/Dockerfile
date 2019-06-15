@@ -15,7 +15,7 @@ RUN     jupyter nbextension enable --py --sys-prefix qgrid
 RUN     jupyter labextension install qgrid
 
 RUN     jupyter labextension install @jupyter-widgets/jupyterlab-manager
-
+RUN     conda install -y -c conda-forge jupyter_contrib_nbextensions
 RUN     conda install -y -c conda-forge jupyter_nbextensions_configurator
 
 
