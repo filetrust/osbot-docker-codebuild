@@ -2,11 +2,10 @@ version: 0.1
 
 environment_variables:
   plaintext:
-    AWS_DEFAULT_REGION: "eu-west-2"
+    AWS_DEFAULT_REGION: "eu-west-1"
     IMAGE_TAG: "latest"
     IMAGE_REPO_NAME: "osbot-jupyter"
-    ACCOUNT_ID: "244560807427"
-    s#ACCOUNT_ID: "654386450934"
+    ACCOUNT_ID: "311800962295"
 
 phases:
   pre_build:
@@ -22,4 +21,4 @@ phases:
       - docker tag $IMAGE_REPO_NAME:latest $ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/$IMAGE_REPO_NAME:latest
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/$IMAGE_REPO_NAME:latest
+      - docker push $ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
