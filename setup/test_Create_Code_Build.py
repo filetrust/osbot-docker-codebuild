@@ -17,15 +17,17 @@ class test_Create_Code_Build(Test_Helper):
     def setUp(self):
         super().setUp()
         self.github_org      = 'filetrust'
+        self.source_version  = 'gw-bot-fork'
         self.project_name    = 'osbot-docker-codebuild'
         self.build_spec      = 'builds/osbot-jupyter/buildspec.yml'
         self.docker_type     = 'LINUX_CONTAINER'
         self.docker_image    = 'aws/codebuild/docker:18.09.0'
         self.compute_type    = 'BUILD_GENERAL1_LARGE'
         self.delete_project  = True
-        self.api             = Create_Code_Build(project_name=self.project_name , github_org  =self.github_org,
-                                                 docker_type =self.docker_type  , docker_image=self.docker_image,
-                                                 compute_type=self.compute_type , build_spec  =self.build_spec)
+        self.api             = Create_Code_Build(project_name  =self.project_name  , github_org  =self.github_org  ,
+                                                 source_version=self.source_version,
+                                                 docker_type   =self.docker_type   , docker_image=self.docker_image,
+                                                 compute_type  =self.compute_type  , build_spec  =self.build_spec  )
         self.account_id      = self.api.account_id
         self.region          = self.api.region
 
