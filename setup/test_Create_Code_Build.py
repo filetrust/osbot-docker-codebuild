@@ -17,7 +17,7 @@ class test_Create_Code_Build(Test_Helper):
     def setUp(self):
         super().setUp()
         self.github_org      = 'filetrust'
-        self.source_version  = 'gw-bot-fork'
+        self.source_version  = 'master'
         self.project_name    = 'osbot-docker-codebuild'
         self.build_spec      = 'builds/osbot-jupyter/buildspec.yml'
         self.docker_type     = 'LINUX_CONTAINER'

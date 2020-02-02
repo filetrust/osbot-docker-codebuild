@@ -19,6 +19,13 @@ RUN     jupyter nbextension enable --py --sys-prefix qgrid
 #RUN     conda install -y -c conda-forge jupyter_nbextensions_configurator
 
 
+# setup ngrok, install git,unzip
+USER    root
+RUN     wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+RUN     apt-get update
+RUN     apt-get install unzip git -y
+RUN     unzip ngrok-stable-linux-amd64.zip
+
 #install OS_Bot APIs
 RUN     pip install pbx_gs_python_utils
 #osbot_aws osbot-jira osbot-gsuite osbot-jupyter
@@ -27,15 +34,3 @@ RUN     git clone https://github.com/owasp-sbot/OSBot-AWS.git
 RUN     git clone https://github.com/filetrust/OSBot-Jupyter.git
 RUN     git clone https://github.com/filetrust/OSBot-browser.git
 RUN     git clone https://github.com/filetrust/OSBot-jira.git
-
-
-# setup ngrok
-USER    root
-RUN     wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-RUN     apt-get update
-RUN     apt-get install unzip git -y
-RUN     unzip ngrok-stable-linux-amd64.zip
-
-#ADD     start-notebook.sh .
-#RUN     chmod +x start-notebook.sh
-#USER    $NB_UID
