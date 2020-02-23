@@ -31,6 +31,7 @@ RUN     pip install pbx_gs_python_utils
 #osbot_aws osbot-jira osbot-gsuite osbot-jupyter
 RUN     git clone https://github.com/filetrust/GW-Bot.git
 RUN     git clone https://github.com/owasp-sbot/OSBot-AWS.git
+RUN     git clone https://github.com/owasp-sbot/OSBot-Utils.git
 RUN     git clone https://github.com/filetrust/OSBot-Jupyter.git
 RUN     git clone https://github.com/filetrust/OSBot-browser.git
 RUN     git clone https://github.com/filetrust/OSBot-jira.git
