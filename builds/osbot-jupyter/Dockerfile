@@ -10,14 +10,14 @@ RUN     pip install matplotlib
 RUN     pip install pandas
 
 #install jupyter apis used
-RUN     pip install ipywidgets qgrid
+RUN     pip install ipywidgets qgrid jupyter_dashboards cufflinks
 RUN     jupyter nbextension enable --py --sys-prefix qgrid
-#RUN     jupyter labextension install qgrid
 
-#RUN     jupyter labextension install @jupyter-widgets/jupyterlab-manager
-#RUN     conda install -y -c conda-forge jupyter_contrib_nbextensions
-#RUN     conda install -y -c conda-forge jupyter_nbextensions_configurator
-
+RUN jupyter dashboards quick-setup --sys-prefix
+RUN jupyter nbextension install --py jupyter_dashboards --sys-prefix
+RUN jupyter nbextension enable --py jupyter_dashboards --sys-prefix
+RUN jupyter nbextension enable --py widgetsnbextension
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # setup ngrok, install git,unzip
 USER    root
