@@ -13,11 +13,12 @@ RUN     pip install pandas
 RUN     pip install ipywidgets qgrid jupyter_dashboards cufflinks
 RUN     jupyter nbextension enable --py --sys-prefix qgrid
 
-RUN jupyter dashboards quick-setup --sys-prefix
-RUN jupyter nbextension install --py jupyter_dashboards --sys-prefix
-RUN jupyter nbextension enable --py jupyter_dashboards --sys-prefix
-RUN jupyter nbextension enable --py widgetsnbextension
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN     jupyter dashboards quick-setup --sys-prefix
+RUN     jupyter nbextension install --py jupyter_dashboards --sys-prefix
+RUN     jupyter nbextension enable --py jupyter_dashboards --sys-prefix
+RUN     jupyter nbextension enable --py widgetsnbextension
+RUN     jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN     pip install papermill
 
 # setup ngrok, install git,unzip
 USER    root
