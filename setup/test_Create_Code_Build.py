@@ -1,7 +1,5 @@
 from time       import sleep
-from unittest   import TestCase
 
-from osbot_aws.apis.IAM                  import IAM
 from osbot_aws.helpers.Create_Code_Build import Create_Code_Build
 from pbx_gs_python_utils.utils.Assert    import Assert
 from pbx_gs_python_utils.utils.Dev       import Dev
@@ -9,7 +7,7 @@ from pbx_gs_python_utils.utils.Dev       import Dev
 # NOTE at the moment the builds/osbot-jupyter/buildpsec.yml is done manually (need to write an api method to execute it)
 # go to https://eu-west-2.console.aws.amazon.com/codesuite/codebuild/projects/gs-docker-codebuild/builds/start/advanced
 # put 'builds/osbot-jupyter/buildspec.yml' on the Buildspec -> 'Buildspec name - optional' textbox
-from gw_bot.helpers.Test_Helper import Test_Helper
+from osbot_aws.helpers.Test_Helper import Test_Helper
 
 
 class test_Create_Code_Build(Test_Helper):
